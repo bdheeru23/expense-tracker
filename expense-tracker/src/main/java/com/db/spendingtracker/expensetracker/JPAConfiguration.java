@@ -8,7 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.db.spendingtracker.expensetracker.service.*;
+import com.db.spendingtracker.expensetracker.service.ExpenseRepositoryCustom;
+import com.db.spendingtracker.expensetracker.service.ExpenseRepositoryImpl;
 
 
 @Configuration
@@ -20,8 +21,9 @@ import com.db.spendingtracker.expensetracker.service.*;
 public class JPAConfiguration {
 
 	@Bean
-	public ExpenseService productService() {
-		return new ExpenseServiceImpl();
+	public ExpenseRepositoryCustom productService() {
+		return new ExpenseRepositoryImpl();
 	}
+	
 
 }

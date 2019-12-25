@@ -1,8 +1,10 @@
 package com.db.spendingtracker.expensetracker.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +15,20 @@ import com.db.spendingtracker.expensetracker.repository.ExpenseRepository;
 
 @Transactional
 @Service("expenseService")
-public class ExpenseServiceImpl implements ExpenseService{
+public class ExpenseRepositoryImpl implements ExpenseRepositoryCustom{
 	
 	@Autowired
 	private ExpenseRepository expenseRepository;
+	
+	@Override
+	public List<Expense> getExpenses(){
+		return expenseRepository.findAll(Sort.by("expense_date"));
+	}
+	
+	@Override
+	public Optional<Expense> getExpense(Long id){
+		return expenseRepository.findById(id);
+	}
 	
 	@Override
 	public Double totalExpenses() {

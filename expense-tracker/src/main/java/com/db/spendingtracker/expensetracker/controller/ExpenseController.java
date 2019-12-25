@@ -37,7 +37,12 @@ public class ExpenseController {
 	
 	@GetMapping("/expenses")
 	List<Expense> getExpenses(){
-		return expenseRepository.findAll(Sort.by("expense_date"));
+		return expenseRepository.getExpenses();
+	}
+	
+	@GetMapping("/getexpensesforuser")
+	List<Expense> getExpensesForUser(){
+		return expenseRepository.getExpensesForUser();
 	}
 	
 	@GetMapping("/expense/{id}")
