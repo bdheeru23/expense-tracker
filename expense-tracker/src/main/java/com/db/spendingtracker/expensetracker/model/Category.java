@@ -25,5 +25,7 @@ public class Category {
 	//Travel, Books...
 	private String name;
 	
+	@ManyToOne
+	private DAOUser user;
 
 }

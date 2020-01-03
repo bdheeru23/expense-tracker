@@ -36,6 +36,11 @@ public class CategoryController {
 		return categoryRepository.findAll();
 	}
 	
+	@GetMapping("/getcategoriesforuser")
+	Collection<Category> getcategoriesforuser(){
+		return categoryRepository.getCategoriesForUser();
+	}
+	
 	@GetMapping("/category/{id}")
 	ResponseEntity<?> category(@PathVariable long id) {
 		Optional<Category> category = categoryRepository.findById(id);
