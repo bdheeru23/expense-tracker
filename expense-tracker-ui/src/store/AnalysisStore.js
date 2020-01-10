@@ -1,6 +1,11 @@
 import {observable, action,decorate,runInAction} from 'mobx';
 import axios from 'axios';
 
+let requestHeaders = {
+    'Authorization': `Bearer ${sessionStorage.getItem("authToken")}`,
+    'Content-type':'application/json'
+}
+
 class AnalysisStore {
 
     categories = [];
@@ -9,7 +14,7 @@ class AnalysisStore {
     isLoading = true;
 
     async loadExpenseByCategory(){
-        await axios.get('/api/analysis/expense-by-category')
+        await axios.get('/api/analysis/expense-by-category',{headers:requestHeaders})
         .then(responseExp => {
             runInAction(() => {
                 this.categories = responseExp.data.map((dataRow) => dataRow.category);
@@ -24,7 +29,7 @@ class AnalysisStore {
     }
 
     async loadExpensesByPaymentTypes(){
-        await axios.get('/api/analysis/expense-by-payment-type')
+        await axios.get('/api/analysis/expense-by-payment-type',{headers:requestHeaders})
         .then(responseExp => {
             runInAction(() => {
                 this.paymentTypes = responseExp.data.map((dataRow) => dataRow.paymentType);

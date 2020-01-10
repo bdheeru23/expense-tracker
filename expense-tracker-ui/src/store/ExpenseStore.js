@@ -1,13 +1,19 @@
 import {observable, action,decorate,runInAction} from 'mobx';
 import axios from 'axios';
 
+let requestHeaders = {
+    'Authorization': `Bearer ${sessionStorage.getItem("authToken")}`,
+    'Content-type':'application/json'
+}
+
 class ExpenseStore {
     expenses = [];
     totalExpenses = 0;
     isLoading = true;
 
     async loadExpenses(){
-        await axios.get('/api/expenses')
+        await axios.get('/api/getexpensesforuser',
+        {headers:requestHeaders})
         .then(responseExp => {
             runInAction(() => {
                 this.expenses = responseExp.data;
@@ -20,7 +26,7 @@ class ExpenseStore {
     }
 
     async loadTotalExpenses(){
-        await axios.get('/api/expenses/total')
+        await axios.get('/api/expenses/total',{headers:requestHeaders})
         .then(responseExp => {
             runInAction(() => {
                 this.totalExpenses = responseExp.data;
@@ -33,13 +39,7 @@ class ExpenseStore {
     }
 
     deleteExpense = async(id) => {
-        axios.delete(`/api/expense/${id}`,
-        {
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/json'
-            }
-        }
+        axios.delete(`/api/expense/${id}`,{headers:requestHeaders}
         ).then(() => {
             let updatedExpenses = this.expenses.filter(i => i.id !== id);
             this.expenses = updatedExpenses;
@@ -47,13 +47,7 @@ class ExpenseStore {
     }
 
     editExpense = async(id) => {
-        axios.put(`/api/expense/${id}`,
-        {
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/json'
-            }
-        }
+        axios.put(`/api/expense/${id}`,{headers:requestHeaders}
         ).then(responseExp => {
             runInAction(() => {
                 this.totalExpenses = responseExp.data;

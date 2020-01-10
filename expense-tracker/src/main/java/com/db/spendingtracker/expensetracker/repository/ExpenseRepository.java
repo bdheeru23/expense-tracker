@@ -21,7 +21,7 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long>,ExpenseRe
 	@Query(value="select e from Expense e where e.id=?1")
 	public Optional<Expense> getExpense(Long id);
 	
-	@Query(value="SELECT sum(e.amount) from Expense e")
+	@Query(value="SELECT sum(e.amount) from Expense e where e.user.username = ?#{principal.username}")
 	public Double totalExpenses();
 	
 	@Query(value="select c.name as category, sum(e.amount) as amount from Category c, Expense e where c.id=e.category.id and c.user.username=e.user.username and e.user.username=?#{principal.username} group by c.name")

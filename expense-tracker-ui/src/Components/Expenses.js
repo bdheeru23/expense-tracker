@@ -8,26 +8,6 @@ import EditExpenseModal from './EditExpenseModal';
 
 class Expenses extends Component {
 
-  // {
-  //   "id": 100,
-  //   "expensedate": "2019-06-16T17:00:00Z",
-  //   "description": "New York Business Trip",
-  //   "location": "New York",
-  //   "category": {
-  //   "id": 1,
-  //   "name": "Travel"
-  //   }
-  //   },
- 
-    /* emptyItem = {
-        description : '' ,
-        expenseDate : new Date(),
-        id:104,
-        amount : 0,
-        category : {id:1 , name:'Travel'}
-    } */
-
-    
     constructor(props){
       super(props)
 
@@ -38,7 +18,6 @@ class Expenses extends Component {
         date :new Date(),
         editItemIndex : null,
         itemToBeEdited : null
-        //item : this.emptyItem
        }
        this.editExpense = this.editExpense.bind(this);
     } 
