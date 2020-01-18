@@ -42,7 +42,8 @@ class AddCategoryModal extends Component {
         axios.post('/api/category',item,{
             headers : {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization':`Bearer ${sessionStorage.getItem("authToken")}`
             }
         })
         .catch(function(error){

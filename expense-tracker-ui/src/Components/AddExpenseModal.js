@@ -45,7 +45,8 @@ async handleSubmit(event){
     axios.post('/api/expense',item,{
         headers : {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization':`Bearer ${sessionStorage.getItem("authToken")}`
         }
     })
   .catch(function(error){
@@ -89,7 +90,7 @@ async handleSubmit(event){
 
 async componentDidMount() {
 
-    axios.get('/api/categories')
+    axios.get('/api/getcategoriesforuser')
     .then(response => {
         this.setState({Categories:response.data,isLoading:false});
     })
