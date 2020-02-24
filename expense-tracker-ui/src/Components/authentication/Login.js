@@ -47,6 +47,7 @@ class Login extends Component {
             .then(res => {
                 if(res.status ==  200){
                     sessionStorage.setItem("authToken",res.data.token);
+                    sessionStorage.setItem("userDetails",this.state.username);
                     this.props.history.push("/home")
                 }
             })

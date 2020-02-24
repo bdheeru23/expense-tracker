@@ -13,7 +13,7 @@ class AppNav extends Component {
                 <NavbarBrand href="/">Expense Tracker Application</NavbarBrand>
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink href="/"><FaHome/>Home</NavLink>
+                      <NavLink href="/home"><FaHome/>Home</NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink href="/categories"><FaTag/>Categories</NavLink>

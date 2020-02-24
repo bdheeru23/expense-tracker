@@ -8,6 +8,7 @@ import Register from './Components/authentication/Register';
 import CategoryStore from './store/CategoryStore';
 import ExpenseStore from './store/ExpenseStore';
 import AnalysisStore from './store/AnalysisStore';
+import AuthStore from './store/AuthStore';
 import {Provider} from 'mobx-react';
 
 
@@ -18,7 +19,7 @@ class App extends Component {
     state = {  }
     render() { 
         return ( 
-            <Provider categoryStore={CategoryStore} expenseStore={ExpenseStore} analysisStore = {AnalysisStore}>
+            <Provider categoryStore={CategoryStore} expenseStore={ExpenseStore} analysisStore = {AnalysisStore} authStore={AuthStore}>
                 <Router>
                     <Switch>
                         <Route path='/' exact={true} component={Login}/>

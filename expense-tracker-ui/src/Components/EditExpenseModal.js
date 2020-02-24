@@ -14,7 +14,8 @@ class EditExpenseModal extends Component {
         id:104,
         amount : 0,
         category : {id:1 , name:'Travel'},
-        paymentType : ''
+        paymentType : '',
+        user: {id:null,username:null}
     }
     
     constructor(props){
@@ -33,9 +34,15 @@ class EditExpenseModal extends Component {
     async componentDidMount(){
 
         this.props.categoryStore.loadCategories();
+        this.props.authStore.getUserDetails();
         console.log(this.state.item);
 
-        axios.get('/api/categories')
+        axios.get('/api/getcategoriesforuser',{
+            headers : {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization':`Bearer ${sessionStorage.getItem("authToken")}`
+            }})
         .then(response => {
             this.setState({categories:response.data});
         })
@@ -53,10 +60,14 @@ class EditExpenseModal extends Component {
     async handleSubmit(event){
      
         const item = this.state.item;
+        const user = this.props.authStore.userdetails;
+        item.user = {id:user.id,username:user.username}
+        this.setState({item});
         axios.put('/api/expense',item,{
             headers : {
               'Accept': 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization':`Bearer ${sessionStorage.getItem("authToken")}`
             }
         })
       .catch(function(error){
@@ -65,7 +76,7 @@ class EditExpenseModal extends Component {
         
         event.preventDefault();
         this.toggleModal();
-        this.props.history.push('/');
+        this.props.history.push('/home');
       }
     
     
@@ -163,4 +174,4 @@ class EditExpenseModal extends Component {
     } 
 }
  
-export default withRouter(inject("categoryStore")(observer(EditExpenseModal)));
+export default withRouter(inject("categoryStore","authStore")(observer(EditExpenseModal)));

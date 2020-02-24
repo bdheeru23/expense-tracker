@@ -51,7 +51,7 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 	
-	@RequestMapping(value="/getuserdetails/{username}", method=RequestMethod.POST)
+	@RequestMapping(value="/getuserdetails/{username}", method=RequestMethod.GET)
 	public DAOUser getUserDetails(@PathVariable String username) {
 		return userDao.findByUsername(username);
 	}

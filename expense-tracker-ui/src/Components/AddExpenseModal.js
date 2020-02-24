@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import {withRouter} from 'react-router-dom';
+import {inject,observer} from 'mobx-react';
 
 class AddExpenseModal extends Component {
   
@@ -13,7 +14,8 @@ class AddExpenseModal extends Component {
     id:999999,
     amount : 0,
     category : {id:1 , name:'Travel'},
-    paymentType : ''
+    paymentType : '',
+    user: {id:null,username:null}
 }
 
 constructor(props){
@@ -33,16 +35,22 @@ constructor(props){
     this.toggleModal = this.toggleModal.bind(this);
 
 }
+
+
 toggleModal(){
     this.setState({
         isModalOpen: !this.state.isModalOpen
     });
 }
 
+
 async handleSubmit(event){
- 
-    const item = this.state.item;
-    axios.post('/api/expense',item,{
+  const user = this.props.authStore.userdetails;
+  const item = this.state.item;
+  item.user = {id:user.id,username:user.username}
+  this.setState({item});
+  console.log(item);
+    axios.post('/api/expense',this.state.item,{
         headers : {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -55,7 +63,7 @@ async handleSubmit(event){
     
     event.preventDefault();
     this.toggleModal();
-    this.props.history.push('/');
+    this.props.history.push('/home');
   }
 
 
@@ -90,7 +98,13 @@ async handleSubmit(event){
 
 async componentDidMount() {
 
-    axios.get('/api/getcategoriesforuser')
+  this.props.authStore.getUserDetails();
+    await axios.get('/api/getcategoriesforuser',{
+      headers : {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization':`Bearer ${sessionStorage.getItem("authToken")}`
+      }})
     .then(response => {
         this.setState({Categories:response.data,isLoading:false});
     })
@@ -98,6 +112,7 @@ async componentDidMount() {
         console.log(error);
     })
 
+    
 }
 
 render(){
@@ -163,4 +178,4 @@ render(){
 }
 }
 
-export default withRouter(AddExpenseModal);
+export default withRouter(inject("authStore")(observer(AddExpenseModal)));

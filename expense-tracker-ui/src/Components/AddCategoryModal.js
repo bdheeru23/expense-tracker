@@ -3,11 +3,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Container,FormGroup, Form,Button,Modal, ModalHeader, ModalBody,InputGroup,InputGroupAddon,Input} from 'reactstrap';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+import {inject,observer} from 'mobx-react';
 
 class AddCategoryModal extends Component {
     emptyCategory = {
         id : 99999,
-        name: ''
+        name: '',
+        user:null
     }
     constructor(props){
         super(props);
@@ -36,8 +38,16 @@ class AddCategoryModal extends Component {
         console.log(categoryItem);
     }
 
+    async componentDidMount(){
+        this.props.authStore.getUserDetails();
+
+    }
+
     async handleSubmit(event){
+        const user = this.props.authStore.userdetails;
         const item = this.state.categoryItem;
+        item.user = {id:user.id,username:user.username}
+        this.setState({item});
         console.log(item);
         axios.post('/api/category',item,{
             headers : {
@@ -83,4 +93,4 @@ class AddCategoryModal extends Component {
     }
 }
  
-export default withRouter(AddCategoryModal);
+export default withRouter(inject("authStore")(observer(AddCategoryModal)));
