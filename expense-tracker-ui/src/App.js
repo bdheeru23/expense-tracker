@@ -10,6 +10,7 @@ import ExpenseStore from './store/ExpenseStore';
 import AnalysisStore from './store/AnalysisStore';
 import AuthStore from './store/AuthStore';
 import {Provider} from 'mobx-react';
+import Expenses from './Components/Expenses';
 
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
                         <Route path='/home' exact={true} component={Home}/>
                         <Route path='/categories' exact={true} component={Categories}/>
                         <Route path='/analysis' exact={true} component={Analysis} />
+                        <Route path="/expenses" exact={true} component={Expenses} />
                     </Switch>
                 </Router>
              </Provider>

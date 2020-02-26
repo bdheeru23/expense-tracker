@@ -59,6 +59,13 @@ class ExpenseStore {
         })
     }
 
+    addExpense = async(expense) => {
+        axios.post('/api/expense',expense,{headers:requestHeaders}
+        ).catch(function(error){
+            console.log(error);
+        })
+    }
+
 }
 
 decorate(ExpenseStore,{

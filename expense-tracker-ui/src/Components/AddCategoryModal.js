@@ -49,17 +49,7 @@ class AddCategoryModal extends Component {
         item.user = {id:user.id,username:user.username}
         this.setState({item});
         console.log(item);
-        axios.post('/api/category',item,{
-            headers : {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization':`Bearer ${sessionStorage.getItem("authToken")}`
-            }
-        })
-        .catch(function(error){
-            console.log(error);
-        })
-    
+        this.props.categoryStore.addCategory(item);
         event.preventDefault();
         this.toggleModal();
         this.props.history.push('/categories');
@@ -93,4 +83,4 @@ class AddCategoryModal extends Component {
     }
 }
  
-export default withRouter(inject("authStore")(observer(AddCategoryModal)));
+export default withRouter(inject("authStore","categoryStore")(observer(AddCategoryModal)));

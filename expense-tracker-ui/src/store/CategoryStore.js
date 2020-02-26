@@ -26,6 +26,13 @@ class CategoryStore {
         })
     }
 
+    addCategory = async(category)=>{
+        await axios.post('/api/category',category,{headers:requestHeaders}
+        ).catch(function(error){
+            console.log(error);
+        })
+    }
+
 }
 
 decorate(CategoryStore,{

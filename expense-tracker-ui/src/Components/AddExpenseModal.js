@@ -50,21 +50,11 @@ async handleSubmit(event){
   item.user = {id:user.id,username:user.username}
   this.setState({item});
   console.log(item);
-    axios.post('/api/expense',this.state.item,{
-        headers : {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization':`Bearer ${sessionStorage.getItem("authToken")}`
-        }
-    })
-  .catch(function(error){
-      console.log(error);
-  })
-    
-    event.preventDefault();
-    this.toggleModal();
-    this.props.history.push('/home');
-  }
+  this.props.expenseStore.addExpense(this.state.item);
+  event.preventDefault();
+  this.toggleModal();
+  this.props.history.push('/expenses');
+}
 
 
   handleChange(event){
@@ -178,4 +168,4 @@ render(){
 }
 }
 
-export default withRouter(inject("authStore")(observer(AddExpenseModal)));
+export default withRouter(inject("authStore","expenseStore")(observer(AddExpenseModal)));

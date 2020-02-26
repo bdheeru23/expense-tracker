@@ -5,6 +5,7 @@ import { Table,Container,Button} from 'reactstrap';
 import {inject,observer} from 'mobx-react';
 import AddExpenseModal from './AddExpenseModal';
 import EditExpenseModal from './EditExpenseModal';
+import AppNav from './AppNav';
 
 class Expenses extends Component {
 
@@ -13,11 +14,7 @@ class Expenses extends Component {
 
       this.state = { 
         isLoading :false,
-        Categories:[],
-        Expenses : [],
-        date :new Date(),
         editItemIndex : null,
-        itemToBeEdited : null
        }
        this.editExpense = this.editExpense.bind(this);
     } 
@@ -52,7 +49,7 @@ class Expenses extends Component {
                 <td>{expense.amount}</td>
                 <td>{expense.paymentType}</td>
                 <td>{expense.category.name}</td>
-                <td><EditExpenseModal expense={expense} categories = {this.state.Categories}/></td>
+                <td><EditExpenseModal expense={expense} categories = {this.props.categoryStore.categories}/></td>
                 <td><Button size="sm" color="danger" onClick={() => this.props.expenseStore.deleteExpense(expense.id)}>Delete</Button></td>
               </tr>
             )
@@ -61,6 +58,7 @@ class Expenses extends Component {
             <div>
 
           {''}
+          <AppNav/>
               <Container>
                 <AddExpenseModal />
                 <h3>Expense List</h3>
