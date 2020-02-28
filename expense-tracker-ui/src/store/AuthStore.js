@@ -13,10 +13,7 @@ class AuthStore {
     async getUserDetails(){
         let userName = sessionStorage.getItem("userDetails");
         await axios.get(`/getuserdetails/${userName}`,
-        {headers : {
-            'Accept': 'application/json',
-            'Authorization':`Bearer ${sessionStorage.getItem("authToken")}`
-        }}).then(response => {
+        {headers : requestHeaders}).then(response => {
             runInAction(() => {
                 console.log("userDetails: "+response.data);
                 this.userdetails = response.data;

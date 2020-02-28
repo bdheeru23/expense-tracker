@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar,Nav,NavItem,NavbarBrand,NavLink} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import { FaHome,FaTag } from 'react-icons/fa'
+import { FaHome,FaTag,FaMoneyBillWaveAlt } from 'react-icons/fa'
 import { IoMdAnalytics } from 'react-icons/io'
 
 class AppNav extends Component {
@@ -14,6 +14,9 @@ class AppNav extends Component {
                   <Nav className="ml-auto" navbar>
                     <NavItem>
                       <NavLink href="/home"><FaHome/>Home</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink href="/expenses"><FaMoneyBillWaveAlt/>Expenses</NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink href="/categories"><FaTag/>Categories</NavLink>

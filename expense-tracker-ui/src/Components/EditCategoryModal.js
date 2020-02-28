@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Container,FormGroup, Form,Button,Modal, ModalHeader, ModalBody,InputGroup,InputGroupAddon,Input} from 'reactstrap';
-import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import {inject,observer} from 'mobx-react';
 
