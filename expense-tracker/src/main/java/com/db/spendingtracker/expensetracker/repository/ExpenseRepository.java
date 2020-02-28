@@ -30,7 +30,7 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long>,ExpenseRe
 	@Query(value="select e.paymentType as paymentType, sum(e.amount) as amount from Expense e where e.user.username = ?#{principal.username} group by e.paymentType")
 	public List<ExpenseByPaymentType> getExpensesByPaymentType();
 	
-	@Query(value="select e from Expense e where e.user.username = ?#{principal.username}")
+	@Query(value="select e from Expense e where e.user.username = ?#{principal.username} and MONTH(expenseDate) = MONTH(CURRENT_DATE())")
 	public List<Expense> getExpensesForUser();
 	
 }

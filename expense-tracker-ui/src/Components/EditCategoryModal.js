@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Container,FormGroup, Form,Button,Modal, ModalHeader, ModalBody,InputGroup,InputGroupAddon,Input} from 'reactstrap';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+import {inject,observer} from 'mobx-react';
 
 class EditCategoryModal extends Component {
 
@@ -36,15 +37,7 @@ class EditCategoryModal extends Component {
     async handleSubmit(event){
         const item = this.state.categoryItem;
         console.log(item);
-        axios.put('/api/category',item,{
-            headers : {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .catch(function(error){
-            console.log(error);
-        })
+        this.props.categoryStore.editCategory(item);
     
         event.preventDefault();
         this.toggleModal();
@@ -81,4 +74,4 @@ class EditCategoryModal extends Component {
     }
 }
  
-export default withRouter(EditCategoryModal);
+export default withRouter(inject("categoryStore")(observer(EditCategoryModal)));
