@@ -133,6 +133,7 @@ render(){
             <InputGroup className="input-group-sm">
                 <InputGroupAddon addonType="prepend">Category</InputGroupAddon>
                 <select onChange={this.handleCategoryChange} id="category" name="category">
+                  <option id="0" key="0" value="none">Select...</option>
                         {optionList}
                 </select>
             </InputGroup>

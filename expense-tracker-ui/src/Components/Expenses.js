@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
-import { Table,Container,Button} from 'reactstrap';
+import { Table,Container,Button,Row,Col} from 'reactstrap';
 import {inject,observer} from 'mobx-react';
 import AddExpenseModal from './AddExpenseModal';
 import EditExpenseModal from './EditExpenseModal';
@@ -58,12 +58,13 @@ class Expenses extends Component {
             <div>
 
           {''}
+          
           <AppNav/>
-              <Container>
+          <Container>
                 <AddExpenseModal />
                 <h3>Expense List</h3>
                 <h3 className="float-right">Total Expenses : {this.props.expenseStore.totalExpenses}</h3>
-                <Table className="mt-4 table-striped">
+                <Table responsive striped>
                 <thead>
                   <tr>
                     <th width="30%">Description</th>
@@ -82,7 +83,6 @@ class Expenses extends Component {
                 </Table>
               </Container>
 
-          }
 
         </div>
 
