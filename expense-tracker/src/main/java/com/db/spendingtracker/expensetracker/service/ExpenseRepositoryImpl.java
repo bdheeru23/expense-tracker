@@ -21,11 +21,6 @@ public class ExpenseRepositoryImpl implements ExpenseRepositoryCustom{
 	private ExpenseRepository expenseRepository;
 	
 	@Override
-	public List<Expense> getExpenses(){
-		return expenseRepository.findAll(Sort.by("expense_date"));
-	}
-	
-	@Override
 	public Optional<Expense> getExpense(Long id){
 		return expenseRepository.findById(id);
 	}
@@ -43,6 +38,11 @@ public class ExpenseRepositoryImpl implements ExpenseRepositoryCustom{
 	@Override
 	public List<ExpenseByPaymentType> getExpensesByPaymentType() {
 		return expenseRepository.getExpensesByPaymentType();
+	}
+	
+	@Override
+	public List<Expense> getExpensesForUser() {
+		return expenseRepository.getExpensesForUser();
 	}
 	
 	

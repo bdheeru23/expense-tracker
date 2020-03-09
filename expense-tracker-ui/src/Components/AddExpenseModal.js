@@ -146,7 +146,7 @@ render(){
 
             <InputGroup className="input-group-sm">
                 <InputGroupAddon addonType="prepend">Amount</InputGroupAddon>
-                <Input type="text" name="amount" id="amount" onChange={this.handleChange} placeholder="Expense amount"/>
+                <Input type="text" name="amount" id="amount" onChange={this.handleChange} placeholder="Expense amount" type="number"/>
             </InputGroup>
             <br/>
 

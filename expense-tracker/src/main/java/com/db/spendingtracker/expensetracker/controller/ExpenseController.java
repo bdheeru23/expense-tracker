@@ -35,11 +35,6 @@ public class ExpenseController {
 		this.expenseRepository = expenseRepository;
 	}
 	
-	@GetMapping("/expenses")
-	List<Expense> getExpenses(){
-		return expenseRepository.getExpenses();
-	}
-	
 	@GetMapping("/getexpensesforuser")
 	List<Expense> getExpensesForUser(){
 		return expenseRepository.getExpensesForUser();

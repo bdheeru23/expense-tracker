@@ -9,7 +9,7 @@ import com.db.spendingtracker.expensetracker.model.ExpenseByPaymentType;
 
 public interface ExpenseRepositoryCustom {
 	
-	public List<Expense> getExpenses();
+	public List<Expense> getExpensesForUser();
 	
 	public Optional<Expense> getExpense(Long id);
 	
