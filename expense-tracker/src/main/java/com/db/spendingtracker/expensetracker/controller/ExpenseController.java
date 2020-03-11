@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.db.spendingtracker.expensetracker.model.DailyExpensesForAMonth;
 import com.db.spendingtracker.expensetracker.model.Expense;
 import com.db.spendingtracker.expensetracker.model.ExpenseByCategory;
 import com.db.spendingtracker.expensetracker.model.ExpenseByPaymentType;
@@ -76,6 +77,11 @@ public class ExpenseController {
 	@GetMapping("/analysis/expense-by-payment-type")
 	List<ExpenseByPaymentType> getExpensesByPaymentType() {
 		return expenseRepository.getExpensesByPaymentType();
+	}
+	
+	@GetMapping("/analysis/dailyexpenses")
+	List<DailyExpensesForAMonth> getDailyExpensesForAMonth(){
+		return expenseRepository.getDailyExpensesForAMonth();
 	}
 
 }

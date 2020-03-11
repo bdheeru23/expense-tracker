@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.db.spendingtracker.expensetracker.model.DailyExpensesForAMonth;
 import com.db.spendingtracker.expensetracker.model.Expense;
 import com.db.spendingtracker.expensetracker.model.ExpenseByCategory;
 import com.db.spendingtracker.expensetracker.model.ExpenseByPaymentType;
@@ -43,6 +44,11 @@ public class ExpenseRepositoryImpl implements ExpenseRepositoryCustom{
 	@Override
 	public List<Expense> getExpensesForUser() {
 		return expenseRepository.getExpensesForUser();
+	}
+	
+	@Override
+	public List<DailyExpensesForAMonth> getDailyExpensesForAMonth(){
+		return expenseRepository.getDailyExpensesForAMonth();
 	}
 	
 	

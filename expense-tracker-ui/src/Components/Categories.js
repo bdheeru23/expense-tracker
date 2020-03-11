@@ -35,7 +35,7 @@ class Categories extends Component {
                 <Container>
                     <AddCategoryModal />
                     <h3>Categories</h3>
-                    <Table className="mt-4 table-striped">
+                    <Table responsive striped>
                     <thead>
                     <tr>
                         <th width="30%">Category</th>
