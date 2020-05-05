@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.db.spendingtracker.expensetracker.model.DailyExpensesForAMonth;
 import com.db.spendingtracker.expensetracker.model.Expense;
 import com.db.spendingtracker.expensetracker.model.ExpenseByCategory;
 import com.db.spendingtracker.expensetracker.model.ExpenseByPaymentType;
@@ -30,8 +29,5 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long>,ExpenseRe
 	
 	@Query(value="select e from Expense e where e.user.username = ?#{principal.username} and MONTH(expenseDate) = MONTH(CURRENT_DATE()) order by expenseDate desc")
 	public List<Expense> getExpensesForUser();
-	
-	@Query(value="select DATE(e.expenseDate) as date, sum(e.amount) as amount from Expense e where e.user.username = ?#{principal.username} and MONTH(e.expenseDate) = MONTH(CURRENT_DATE()) group by DATE(e.expenseDate)")
-	public List<DailyExpensesForAMonth> getDailyExpensesForAMonth();
 	
 }
