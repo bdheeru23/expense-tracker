@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ExpenseByCategory from './charts/ExpenseByCategory';
 import ExpenseByPaymentTypes from './charts/ExpenseByPaymentTypes';
 import AppNav from './AppNav';
-import {Card,CardBody,CardTitle,Container} from 'reactstrap';
+import {Card,CardBody,CardTitle,Container,Row,Col} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class Analysis extends Component {
@@ -12,16 +12,20 @@ class Analysis extends Component {
             <div>
                 <AppNav/>
                 <Container>
-                    <div className="col-12 col-md-6 col-sm-4">
+                    <Row>
+                        <Col>
                         <Card>
                             <CardTitle>Expenses by Category</CardTitle>
                             <CardBody><ExpenseByCategory /></CardBody>
                         </Card>
+                        </Col>
+                        <Col>
                         <Card>
                             <CardTitle>Expenses by Payment type</CardTitle>
                             <CardBody><ExpenseByPaymentTypes /></CardBody>
                         </Card>
-                    </div>
+                        </Col>
+                    </Row>
                 </Container>
            </div>     
         );
