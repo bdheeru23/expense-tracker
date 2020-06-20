@@ -19,3 +19,12 @@ services:
             SPRING_DATASOURCE_URL : jdbc:mysql://docker-mysql:3306/expensedb?autoReconnect=true
         depends_on:
             - docker-mysql
+    expense-tracker-ui:
+        build:
+            context: ../expense-tracker-ui
+            dockerfile: Dockerfile
+        ports:
+            - 3000:3000
+        depends_on:
+            - docker-mysql
+            - expense-tracker-api
