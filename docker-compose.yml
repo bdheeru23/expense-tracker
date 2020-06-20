@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    docker-mysql:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=expensedb
+            - MYSQL_PASSWORD=password
+        ports:
+            - 3306:3306
+    expense-tracker-api:
+        image: bdheeru23/expense-tracker-api:v0.0.2
+        ports:
+            - 8080:8080
+        environment: 
+            SPRING_DATASOURCE_URL : jdbc:mysql://docker-mysql:3306/expensedb?autoReconnect=true
+        depends_on:
+            - docker-mysql
+    expense-tracker-ui:
+        image: bdheeru23/expense-tracker-ui:v0.0.2
+        ports:
+            - 3000:3000
+        depends_on:
+            - docker-mysql
+            - expense-tracker-api
