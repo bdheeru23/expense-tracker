@@ -7,4 +7,4 @@ To start with, user must have docker installed on their system and needs to run 
 
 On the login screen, user will be able to login if the username already exists or also register if it is the first time user.
 
-![Image](Screenshot/HomeScreen.png "HomeScreen")
+![Image](Screenshots/HomeScreen.png "HomeScreen")
