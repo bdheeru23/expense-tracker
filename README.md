@@ -56,9 +56,9 @@ Hope this is useful to whoever needs.
 References:
 Youtube tutorial videos by code engine:
 
-https://www.youtube.com/watch?v=avvrsnYFXIE
-https://www.youtube.com/watch?v=jCalDxGthoc
+* https://www.youtube.com/watch?v=avvrsnYFXIE
+* https://www.youtube.com/watch?v=jCalDxGthoc
 
 Web references:
-stackoverflow
-https://reactstrap.github.io/components/alerts/
+* stackoverflow.com
+* https://reactstrap.github.io/components/alerts/
